@@ -60,7 +60,7 @@ const ADD = () => {
         let cat = document.getElementsByClassName("pcat")[0].value;
         let brand = document.getElementsByClassName("pbrand")[0].value;
         let img = document.getElementById("file");
-    console.log(images);
+    
 
         var formdata = new FormData();
 

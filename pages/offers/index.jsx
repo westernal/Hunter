@@ -41,7 +41,7 @@ const Offers = () => {
     </div>
     <div className="offer-list">
     {
-           posts.map(post => {
+          posts && posts.map(post => {
           return(
             <div className="offer-item">
             <div className="oi-text">

@@ -53,14 +53,17 @@ const Products = () => {
     </div>
     
     <div className="product-list" id="hid">
-        <div className="pitem">
+        {
+            posts && posts.map(post => {
+                return(
+                    <div className="pitem" key={post._id}>
         <div className="pitem-text">
-                <img src="/Images/photo_2021-01-28_21-12-12-removebg-preview (1).jpg" alt="product image" />
-                <p>لوله ورودی هوا به هواکش (سرخم)</p>
-                <p>461362</p>
-                <p>salam</p>
-                <p>salam</p>
-                <p>تومان</p>
+        <img src={"http://193.39.9.72:5000/"+post.images[0].image} alt="product" id="js"/>
+            <p>{post.title}</p>
+            <p>{post.productNumber} </p>
+            <p>{post.category[0].title} </p>
+            <p>{post.stock} </p>
+            <p>{post.price} </p>
                 <button>مشاهده جزئيات</button>
             </div>
             <div className="pitem-title">
@@ -73,6 +76,9 @@ const Products = () => {
                 <p>جزئيات</p>
             </div>
         </div>
+                )
+            })
+        }
     </div>
     <div className="dash-result" id="res">
                             <div className="dr-nav">
@@ -87,7 +93,7 @@ const Products = () => {
                             </div>
                             <div className="dr-rows" id="dr-rows">
                             {
-           posts.map((post,index) => {
+        posts &&   posts.map((post,index) => {
           return(
             <div className="dr-row" id="hidden" key={post._id}>
             <p id="js">{index}</p>

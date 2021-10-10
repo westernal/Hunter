@@ -2,7 +2,7 @@ import Head from 'next/head'
 import Header from '../../components/Header';
 import Navbar from '../../components/Navbar';
 import DatePicker from "react-datepicker";
-import { useEffect,useState } from 'react'
+import { useState } from 'react'
 import "react-datepicker/dist/react-datepicker.css";
 import dateFormat from "dateformat";
 

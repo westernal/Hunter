@@ -64,25 +64,25 @@ const Information = () => {
                    
             </div>
             <div className="p-item">
-                <p id="infspec">{posts.address.province}</p>
+                <p id="infspec">{posts.address && posts.address.province}</p>
                 
                     <p>استان:</p>
                    
             </div>
             <div className="p-item">
-               <p id="infspec">{posts.address.city}</p>
+               <p id="infspec">{posts.address && posts.address.city}</p>
                 
                     <p>  شهر:</p>
                   
             </div>
             <div className="p-item">
-                <p id="infspec">{posts.address.zone}</p>
+                <p id="infspec">{posts.address && posts.address.zone}</p>
                
                     <p>منطقه: </p>
                   
             </div>
             <div className="p-item">
-                <p id="infspec">{posts.address.address}</p>
+                <p id="infspec">{posts.address && posts.address.address}</p>
                 
                     <p>آدرس:</p>
                    
@@ -116,22 +116,22 @@ const Information = () => {
     </div>
     <div className="add-form">
         <p>استان</p>
-        <input type="text" readOnly value={posts.address.province} />
+        <input type="text" readOnly value={posts.address && posts.address.province} />
         
     </div>
     <div className="add-form">
         <p>شهر</p>
-        <input type="text" readOnly value={posts.address.city} />
+        <input type="text" readOnly value={posts.address && posts.address.city} />
         
     </div>
     <div className="add-form">
         <p>منطقه</p>
-        <input type="text" readOnly  value={posts.address.zone}/>
+        <input type="text" readOnly  value={posts.address && posts.address.zone}/>
         
     </div>
     <div className="add-form">
         <p>آدرس</p>
-        <input type="text" readOnly value={posts.address.address} />
+        <input type="text" readOnly value={posts.address && posts.address.address} />
         
     </div>
         </div>

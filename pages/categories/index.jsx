@@ -20,7 +20,7 @@ const Categories = () => {
                       };
                     fetch("http://193.39.9.72:5000/api/admin/product/category", requestOptions)
                     .then(res => res.json())
-                    .then(res => {setPosts(res.data.categories)})
+                    .then(res => setPosts(res.data.categories))
 
                     
         
@@ -40,10 +40,10 @@ const Categories = () => {
         <p>  همه دسته بندي ها</p>
     </div>
     <div className="brand-list">
-    {
+    { posts &&
            posts.map(post => {
           return(
-            <div className="brand" key={post._id}>
+            <div className="brand" key={post._id} style={{border: `1px solid ${post.color}`}}>
             <img src={"http://193.39.9.72:5000/"+post.image} alt="category" />
         </div>
           )

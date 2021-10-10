@@ -796,7 +796,7 @@
        grid-gap: 20px;
      }
 
-     .banner, .banner1,.banner2,.banner3 {
+     .banner0, .banner1,.banner2,.banner3 {
       border: 1px solid #EEEEEE;
       box-sizing: border-box;
       border-radius: 6px;
@@ -813,7 +813,7 @@
       direction: rtl;        
      }
 
-     .banner {
+     .banner0 {
       background: #F58222;
      }
 
@@ -1589,7 +1589,7 @@ background: #FFFFFF;
     }
 
   @media only screen and (max-width: 400px) {
-    .search-form,.banner, .banner1,.banner2,.banner3, .search-form input,.info-btn button, .add-form input,.add-form select,
+    .search-form,.banner0, .banner1,.banner2,.banner3, .search-form input,.info-btn button, .add-form input,.add-form select,
     .ai {
       width: 300px;
     }

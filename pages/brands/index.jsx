@@ -44,7 +44,7 @@ const Brands = () => {
     </div>
     <div className="brand-list">
        {
-           posts.map(post => {
+         posts &&  posts.map(post => {
           return(
             <div className="brand" key={post._id}>
             <img src={"http://193.39.9.72:5000/"+post.image} alt="brand" />

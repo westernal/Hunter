@@ -2,7 +2,7 @@ import Head from 'next/head'
 import Header from '../../components/Header';
 import Navbar from '../../components/Navbar';
 import { useEffect,useState } from 'react'
-import fetch from "node-fetch"
+import Link from 'next/dist/client/link';
 
 const Users = () => {
 
@@ -53,20 +53,22 @@ const Users = () => {
                                 <p>ردیف</p>
                                 <p>نام و نام خانوادگی</p>
                                 <p>شماره همراه</p>
-                                <p >دسته بندی</p>
-                                <p>وضعیت</p>
+                                <p > نوع فعالیت</p>
+                                <p>نام فروشگاه</p>
+                                <p>جزئيات</p>
                             </div>
                             <div className="dr-rows" id="dr-rows">
                           
                             {
-           posts.map(post => {
+           posts.map((post,index) => {
           return(
             <div className="dr-row" id="hidden" key={post._id}>
-            <p id="drn"></p>
-            <p id="dr-date"></p>
-            <p className="dr-spec"></p>
-            <p className="dr-spec2"></p>
-            <p></p>
+            <p id="drn">{index}</p>
+            <p id="dr-date">{post.name}</p>
+            <p className="dr-spec">{post.mobileNumber}</p>
+            <p className="dr-spec2">{post.activity}</p>
+            <p>{post.storeName}</p>
+           <Link href="/users/[id]" as={`/users/${post._id}`} ><a> <p>مشاهده جزئيات</p> </a></Link>
         </div>
           )
            })
