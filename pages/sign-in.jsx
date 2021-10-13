@@ -30,7 +30,7 @@ const LogIn = () => {
 
         
         
-        fetch(`http://193.39.9.72:5000/api/admin/user/signInByMobileNumber`, requestOptions)
+        fetch(`https://hunter-server.oben.design/api/admin/user/signInByMobileNumber`, requestOptions)
           .then(response => {response.json();
           if (response.ok) {
               
@@ -71,7 +71,7 @@ const LogIn = () => {
             agent: httpsAgent
           };
           
-          fetch("http://193.39.9.72:5000/api/admin/user/validatecode/", requestOptions)
+          fetch("https://hunter-server.oben.design/api/admin/user/validatecode/", requestOptions)
             .then(response =>response.json() )
             .then(result => {
                 
@@ -115,9 +115,7 @@ const LogIn = () => {
  
     return ( 
         <div className="login-page">
-            <div className="lp-header">
-            <Link href="/"><a >{"<"} <p> بازگشت به صفحه اصلی </p> </a></Link> 
-            </div>
+           
             
              
             <div className="su-main">

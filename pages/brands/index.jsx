@@ -21,9 +21,11 @@ const Brands = () => {
                     "x-auth-token":`${localStorage.getItem('token')}`},
                         redirect: 'follow'
                       };
-                    fetch("http://193.39.9.72:5000/api/admin/product/brand", requestOptions)
+                    fetch("https://hunter-server.oben.design/api/admin/product/brand", requestOptions)
                     .then(res => res.json())
-                    .then(res => setPosts(res.data.brands))
+                    .then(res => {if (res.data) {
+                      setPosts(res.data.brands)
+                    } })
 
                    
         
@@ -47,7 +49,7 @@ const Brands = () => {
          posts &&  posts.map(post => {
           return(
             <div className="brand" key={post._id}>
-            <img src={"http://193.39.9.72:5000/"+post.image} alt="brand" />
+            <img src={"https://hunter-server.oben.design/"+post.image} alt="brand" />
         </div>
           )
            })

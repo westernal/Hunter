@@ -1,6 +1,15 @@
 import Link from "next/link"
+import { useRouter } from "next/dist/client/router";
 
 const Navbar = () => {
+    const Router = useRouter();
+    function logOut(e) {
+        e.preventDefault();
+        
+        localStorage.setItem('token', "");
+       
+        Router.push('/sign-in');
+      }
     return (   <div className="navbar">
     <div className="ds2-user">
         <img src="/Images/Group 12998.svg" alt="profile picture" />
@@ -47,7 +56,7 @@ const Navbar = () => {
                     </div> </a></Link>
    
         
-        <a href="#" ><div className="ds2-out"  >
+        <a href="#" onClick={logOut} ><div className="ds2-out"  >
             <p> خروج از حساب کاربری</p>
             <img src="/Images/log out.svg" alt="" />
         </div>

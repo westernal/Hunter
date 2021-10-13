@@ -24,7 +24,7 @@ formdata.append("color", color);
             body:formdata,
             redirect: 'follow'
           };
-        let res = await fetch("http://193.39.9.72:5000/api/admin/product/category/add", requestOptions);
+        let res = await fetch("https://hunter-server.oben.design/api/admin/product/category/add", requestOptions);
         let posts = await res.json();
     }
 

@@ -2,8 +2,17 @@ import Head from 'next/head'
 import Header from '../components/Header'
 import Navbar from '../components/Navbar'
 import Link from 'next/dist/client/link'
+import { useRouter } from "next/dist/client/router";
+import { useEffect } from 'react'
 
 export default function Home() {
+    const Router = useRouter();
+    useEffect(() => { 
+        if (localStorage.getItem("token") == "" || localStorage.getItem("token") == undefined) {
+            Router.push("/sign-in")
+        }
+    }, [])
+   
   return (
     <div >
        <div className="profile">
@@ -34,7 +43,7 @@ export default function Home() {
                     </div>
                 </div>
                 </a></Link>
-                <Link href="users"><a>   <div className="p-item">
+                <Link href="/users"><a>   <div className="p-item">
                     {"<"}
                     <div className="pi">
                         <p>کاربران</p>

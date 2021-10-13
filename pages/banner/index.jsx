@@ -19,10 +19,10 @@ const Index = () => {
                     "x-auth-token":`${localStorage.getItem('token')}`},
                         redirect: 'follow'
                       };
-                    fetch("http://193.39.9.72:5000/api/admin/banner", requestOptions)
+                    fetch("https://hunter-server.oben.design/api/admin/banner", requestOptions)
                     .then(res => res.json())
-                    .then(res => {setPosts(res.data.banners);
-                    console.log(res);})
+                    .then(res => {if(res.data){setPosts(res.data.banners);}
+                    })
 
                    
         

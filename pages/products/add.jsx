@@ -28,7 +28,7 @@ const ADD = () => {
                     "x-auth-token":`${localStorage.getItem('token')}`},
                         redirect: 'follow'
                       };
-                    fetch("http://193.39.9.72:5000/api/admin/product/category", requestOptions)
+                    fetch("https://hunter-server.oben.design/api/admin/product/category", requestOptions)
                     .then(res => res.json())
                     .then(res => setPosts(res.data.categories))
 
@@ -38,7 +38,7 @@ const ADD = () => {
                     "x-auth-token":`${localStorage.getItem('token')}`},
                         redirect: 'follow'
                       };
-                    fetch("http://193.39.9.72:5000/api/admin/product/brand", requestOptions2)
+                    fetch("https://hunter-server.oben.design/api/admin/product/brand", requestOptions2)
                     .then(res => res.json())
                     .then(res => setBrands(res.data.brands))
         
@@ -84,9 +84,9 @@ formdata.append("stock", stock);
             body:formdata,
             redirect: 'follow'
           };
-        let res = await fetch("http://193.39.9.72:5000/api/admin/product/add", requestOptions);
+        let res = await fetch("https://hunter-server.oben.design/api/admin/product/add", requestOptions);
         let posts = await res.json();
-        console.log(posts);
+       
     }
 
 

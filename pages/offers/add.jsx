@@ -35,7 +35,7 @@ const ADD = () => {
             body:formdata,
             redirect: 'follow'
           };
-         fetch("http://193.39.9.72:5000/api/admin/promotion/add", requestOptions)
+         fetch("https://hunter-server.oben.design/api/admin/promotion/add", requestOptions)
          .then(res => res.json())
          .then(res => console.log(res))
          .catch(e => console.log(e))

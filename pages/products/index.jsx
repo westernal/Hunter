@@ -2,8 +2,7 @@ import Head from 'next/head'
 import Header from '../../components/Header';
 import Navbar from '../../components/Navbar';
 import Link from 'next/dist/client/link';
-import { useEffect,useState } from 'react'
-import fetch from "node-fetch"
+import { useEffect,useState } from 'react';
 
 const Products = () => {
 
@@ -19,9 +18,13 @@ const Products = () => {
                     "x-auth-token":`${localStorage.getItem('token')}`},
                         redirect: 'follow'
                       };
-                    fetch("http://193.39.9.72:5000/api/admin/product", requestOptions)
+                    fetch("https://hunter-server.oben.design/api/admin/product", requestOptions)
                     .then(res => res.json())
-                    .then(res => setPosts(res.data.products))
+                    .then(res => {
+                        if (res.data) {
+                            setPosts(res.data.products)
+                        }
+                    })
 
                    
         
@@ -39,7 +42,7 @@ const Products = () => {
     <div className="profile-main">
     <div className="search">
         <div className="search-form">
-        <input type="text" placeholder="جستجوی کاربران" />
+        <input type="text" placeholder="جستجوی محصولات" />
         <img src="/Images/search.svg" alt="search icon" />
         </div>
     </div>
@@ -97,7 +100,7 @@ const Products = () => {
           return(
             <div className="dr-row" id="hidden" key={post._id}>
             <p id="js">{index}</p>
-            <img src={"http://193.39.9.72:5000/"+post.images[0].image} alt="product" id="js"/>
+            <img src={"https://hunter-server.oben.design/"+post.images[0].image} alt="product" id="js"/>
             <p>{post.title}</p>
             <p>{post.productNumber} </p>
             <p>{post.category[0].title} </p>

@@ -18,9 +18,13 @@ const Offers = () => {
                     "x-auth-token":`${localStorage.getItem('token')}`},
                         redirect: 'follow'
                       };
-                    fetch("http://193.39.9.72:5000/api/admin/promotion?page=1&limit=10", requestOptions)
+                    fetch("https://hunter-server.oben.design/api/admin/promotion?page=1&limit=10", requestOptions)
                     .then(res => res.json())
-                    .then(res => setPosts(res.data.promotions))
+                    .then(res => {if(res.data){
+                        setPosts(res.data.promotions)
+                    } 
+                        
+                    })
 
                    
         
@@ -43,7 +47,7 @@ const Offers = () => {
     {
           posts && posts.map(post => {
           return(
-            <div className="offer-item">
+            <div className="offer-item" key={post._id}>
             <div className="oi-text">
                 <h3>{post.title}</h3>
                 <p>{post.description} </p>

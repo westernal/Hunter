@@ -1,11 +1,20 @@
 import Link from "next/link"
 import Head from "next/head";
 import { useEffect } from 'react'
-import fetch from "node-fetch"
-
+import { useRouter } from "next/dist/client/router";
 
 
 const Header = () => {
+
+  const Router = useRouter();
+
+  function logOut(e) {
+    e.preventDefault();
+    
+    localStorage.setItem('token', "");
+   
+    Router.push('/sign-in');
+  }
 
     useEffect(() => {   
       
@@ -22,7 +31,7 @@ const Header = () => {
             
           };
           
-          fetch("http://193.39.9.72:5000/api/admin/user", requestOptions)
+          fetch("https://hunter-server.oben.design/api/admin/user", requestOptions)
             .then(response => response.json())
             .then(result => {
                 
@@ -65,7 +74,7 @@ const Header = () => {
     return (  <div className="header">
         <Head>
         <meta charset="utf-8" />
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta httpEquiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 <meta name="description" content="هانتر پخش" />
 <meta name="keywords" content="Keywords" />
@@ -99,12 +108,12 @@ const Header = () => {
         <Link href="/contact" className="cactive"><a >  درباره و مکاتبه با ما    </a></Link>
         <a href="https://nilooz.com/" className="bactive">  بلاگ</a>
         <Link href="/sign-in">ورود به حساب کاربری</Link>
-        <a  href="#">خروج از حساب کاربری</a>
+        <a  href="#" onClick={logOut}>خروج از حساب کاربری</a>
     </div>
   </div>
   <div className="mp-responsive">
             <div className="mprr">
-            <img src="/Images/menu (1).svg"  alt="back button"/>
+            <img src="/Images/menu (1).svg"  alt="back button" onClick={() => Router.back()}/>
                 <img src="/Images/menu.svg" alt="notifications"  />
                
             </div>
@@ -119,16 +128,18 @@ const Header = () => {
                 <Link href="/sign-in"><a > <p>ورود</p>  </a></Link> 
                
      </div>
-        <div className="mpr">
+       <div className="mpr">
+       <Link href="/information"><a href="#" className="mp-profile"   id="mpp"> 
+         <img src="/Images/Group 12998.svg" alt="Profile picture" /> <p id="username"> </p> 
+              
             
-            <a href="#" className="mp-profile"   id="mpp"> <img src="/Images/Group 12998.svg" alt="Profile picture" /> <p id="username"> </p>
-              </a>
-            
-      
+        </a></Link>
       
  
      
     </div>
+    
+   
     
         <div className="mp-nav">
             

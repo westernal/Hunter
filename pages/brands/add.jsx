@@ -28,7 +28,7 @@ let img;
             redirect: 'follow'
           };
           console.log(requestOptions.body);
-         fetch("http://193.39.9.72:5000/api/admin/product/brand/add", requestOptions)
+         fetch("https://hunter-server.oben.design/api/admin/product/brand/add", requestOptions)
          .then(res => {res.json();
         console.log(res);})
          .then(res => console.log(res))

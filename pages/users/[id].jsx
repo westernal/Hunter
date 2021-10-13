@@ -21,9 +21,13 @@ const User = () => {
                     "x-auth-token":`${localStorage.getItem('token')}`},
                         redirect: 'follow'
                       };
-                    fetch(`http://193.39.9.72:5000/api/admin/user/customer/${Router.query.id}`, requestOptions)
+                    fetch(`https://hunter-server.oben.design/api/admin/user/customer/${Router.query.id}`, requestOptions)
                     .then(res => res.json())
-                    .then(res => setPosts(res.data.user)
+                    .then(res => {
+                        if (res.data) {
+                            setPosts(res.data.user);
+                        }
+                    }
                     )
 
                    
@@ -62,7 +66,7 @@ const User = () => {
                 <p>آدرس:</p>
             </div>
             <div className="personal-pic">
-                <img src={"http://193.39.9.72:5000/"+posts.image} alt="user profile picture" />
+                <img src={"https://hunter-server.oben.design/"+posts.image} alt="user profile picture" />
             </div>
         </div>
     </div>

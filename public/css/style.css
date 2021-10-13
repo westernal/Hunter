@@ -108,6 +108,13 @@
     width: 356px;
     height: 56px;
     background-color: white;
+    transition: 0.5s;
+  }
+
+  .p-item input {
+    border: none;
+    direction: ltr;
+    font-size: 15px;
   }
 
   .products .info-btn button, .brands .info-btn button, .add-brand .info-btn button,
@@ -813,6 +820,17 @@
       direction: rtl;        
      }
 
+     .su-main {
+       grid-template-columns: auto;
+       height: 100vh;
+     }
+
+     .su-bck {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+     }
+
      .banner0 {
       background: #F58222;
      }
@@ -1026,7 +1044,7 @@ height: 40px;
 
 .su-main {
   display: grid;
-  grid-template-columns: auto auto;
+  grid-template-columns: auto;
   grid-gap: 50px;
   justify-content: center;
   align-items: center;
@@ -1279,6 +1297,14 @@ align-items: center;
 grid-gap: 10px;
 
 background: #FFFFFF;
+  }
+
+  .su-bck {
+    grid-row: 1;
+  }
+
+  .su-one {
+    grid-row: 2;
   }
 
   .si2 {
@@ -1551,6 +1577,18 @@ background: #FFFFFF;
     align-items: center;
     column-gap: 20px;
     direction: rtl;
+  }
+
+  .su-main {
+    grid-template-columns: auto auto;
+  }
+
+  .su-bck {
+    grid-row: 1;
+  }
+
+  .su-one {
+    grid-row: 1;
   }
 
   .pitem-title {
