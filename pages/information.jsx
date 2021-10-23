@@ -1,5 +1,4 @@
 import Head from 'next/head'
-import fetch from "node-fetch";
 import Header from '../components/Header';
 import Navbar from '../components/Navbar';
 import { useEffect,useState } from 'react'
@@ -22,6 +21,7 @@ const Information = () => {
                     fetch("https://hunter-server.oben.design/api/admin/user", requestOptions)
                     .then(res => res.json())
                     .then(res => {if (res.data) {
+                      
                         setPosts(res.data.user);  
                     }})
 
@@ -30,20 +30,63 @@ const Information = () => {
     
     }, [])
 
+    function visible() {
+        var x = document.getElementsByClassName("edit-inp")[1];
+        var y = document.getElementsByClassName("edit-inp")[2];
+        var see = document.getElementById("pwImg");
+        var dSee = document.getElementById("pwImg2");
+        var see2 = document.getElementById("pwImg3");
+        var dSee2 = document.getElementById("pwImg4");
+        if (x.type === "password") {
+          x.type = "text";
+          see.style.display = "none";
+          dSee.style.display = "block";
+          see2.style.display = "none";
+          dSee2.style.display = "block";
+        } else {
+          x.type = "password";
+          see.style.display = "block";
+          dSee.style.display = "none";
+          see2.style.display = "block";
+          dSee2.style.display = "none";
+        }
+        if (y.type === "password") {
+            y.type = "text";
+            see.style.display = "none";
+            dSee.style.display = "block";
+            see2.style.display = "none";
+            dSee2.style.display = "block";
+          } else {
+            y.type = "password";
+            see.style.display = "block";
+            dSee.style.display = "none";
+            see2.style.display = "block";
+            dSee2.style.display = "none";
+          }
+    }
+
     function editInfo() {
         const btn = document.getElementById("editbtn");
         let inputs =[];
-        let input =[];
+        var visible = document.getElementById("pwImg");
+        var notVisible = document.getElementById("pwImg2");
+        var visible2 = document.getElementById("pwImg3");
+        var notVisible2 = document.getElementById("pwImg4");
+
+        visible.style.opacity = 1;
+        notVisible.style.opacity = 1;
+        visible2.style.opacity = 1;
+        notVisible2.style.opacity = 1;
+        
         j++;
-        for (let i = 0; i < 8; i++) {
+        for (let i = 0; i < 3; i++) {
             inputs[i] = document.getElementsByClassName("edit-inp")[i];
-            input[i] = document.getElementsByClassName("edit-inp2")[i];
-            console.log(input);
-            if (j==1) {
+     
+          
+            if (j==1 && i>0) {
                 inputs[i].readOnly = false;
                 inputs[i].style.backgroundColor = "white";
-                input[i].readOnly = false;
-                input[i].style.backgroundColor = "white";
+                document.getElementById("repeat-pw").style.display="block"
                 btn.style.color = "white";
                 btn.style.backgroundColor = "#F58222";
             }
@@ -51,57 +94,27 @@ const Information = () => {
         }
 
         if (j==2) {
-            for (let i = 0; i < 8; i++) {
-               if (inputs[i].value == "") {
-                   inputs[i].value = inputs[i].placeholder;
-               }
-               if (input[i].value == "") {
-                input[i].value = inputs[i].placeholder;
-            }
-            }
+    
 
-            btn.style.color = "#F58222";
-            btn.style.backgroundColor = "white";
-
-            let raw = JSON.stringify({
-                "firstname": inputs[0].value,
-                "lastname":  inputs[1].value,
-                "telephoneNumber":  inputs[3].value,
-                "province":  inputs[4].value,
-                "city":  inputs[5].value,
-                "zone":  inputs[6].value,
-                "address": {
-                  "reciverName":  inputs[0].value + "" + inputs[1].value,
-                  "province":  inputs[4].value,
-                  "city":  inputs[5].value,
-                  "zone":  inputs[6].value,
-                  "address":  inputs[7].value,
-                  "postalCode": "",
-                  "phoneNumber":  inputs[2].value
+         if (inputs[2].value == inputs[1].value) {
+            for (let i = 0; i < 3; i++) {
+                if (inputs[i].value == "") {
+                    inputs[i].value = inputs[i].placeholder;
                 }
+                document.getElementById("repeat-pw").style.display="none";
+       
+             }
+ 
+             btn.style.color = "#F58222";
+             btn.style.backgroundColor = "white";
+            let raw = JSON.stringify({
+                "password" : inputs[1].value,
+            
+                
+                
               });
             
-            var x = window.matchMedia("(max-width: 922px)")
-
-            if (x.matches) {
-                raw = JSON.stringify({
-                    "firstname": input[0].value,
-                    "lastname":  input[1].value,
-                    "telephoneNumber":  input[3].value,
-                    "province":  input[4].value,
-                    "city":  input[5].value,
-                    "zone":  input[6].value,
-                    "address": {
-                      "reciverName":  input[0].value + " " +  input[1].value,
-                      "province":  input[4].value,
-                      "city":  input[5].value,
-                      "zone":  input[6].value,
-                      "address":  input[7].value,
-                      "postalCode": "",
-                      "phoneNumber":  input[2].value
-                    }
-                  });
-            }
+         
               
               var requestOptions = {
                 method: 'PUT',
@@ -111,17 +124,17 @@ const Information = () => {
     ,
                 redirect: 'follow'
               };
-              console.log(requestOptions.body);
-
+             
               fetch("https://hunter-server.oben.design/api/admin/user/update", requestOptions)
                 .then(response => response.json())
-                .then(result => console.log(result))
+                
                 .catch(error => console.log('error', error));
-            for (let i = 0; i < 8; i++) {
+            for (let i = 0; i < 3; i++) {
                 inputs[i].readOnly = true;
                 inputs[i].style.backgroundColor = "#FCFCFC";
-                input[i].readOnly = true;
+                
             }
+         }else document.getElementById("error").style.display= "block"
             j=0;
         }
 
@@ -138,103 +151,39 @@ const Information = () => {
     </div>
     <div className="pm">
     <div className="profile-main">
-        <div className="profile-menu">
-            <div className="p-item" id="pspec">
-              <input type="text" readOnly placeholder={posts.firstname} className="edit-inp2" />
-                
-                    <p>نام:</p>
-                  
-            </div>
-            <div className="p-item">
-                
-                <input type="text" readOnly placeholder={posts.lastname} className="edit-inp2" />
-                    <p>نام خانوادگی: </p>
-                   
-            </div>
-            <div className="p-item">
-             
-                <input type="text" readOnly placeholder={posts.mobileNumber} className="edit-inp2" />
-                    <p>شماره همراه:</p>
-                   
-                
-            </div>
-            <div className="p-item">
-             
-                <input type="text" readOnly placeholder={posts.telephoneNumber} className="edit-inp2" />
-                    <p>شماره ثابت:</p>
-                   
-            </div>
-            <div className="p-item">
-             
-                <input type="text" readOnly placeholder={posts.address && posts.address.province} className="edit-inp2" />
-                    <p>استان:</p>
-                   
-            </div>
-            <div className="p-item">
-            
-               <input type="text" readOnly placeholder={posts.address && posts.address.city} className="edit-inp2" />
-                    <p>  شهر:</p>
-                  
-            </div>
-            <div className="p-item">
-             
-                <input type="text" readOnly placeholder={posts.address && posts.address.zone} className="edit-inp2" />
-                    <p>منطقه: </p>
-                  
-            </div>
-            <div className="p-item">
-             
-                <input type="text" readOnly placeholder={posts.address && posts.address.address} className="edit-inp2" />
-                    <p>آدرس:</p>
-                   
-            </div>
-           
-        </div>
-        <div className="dash-title" id="res">
+  
+        <div className="dash-title" >
                 <p>مشخصات شما</p>
             </div>
         <div className="res-pm">
             
-        <div className="add-form">
-        <p>نام</p>
-        <input type="text" readOnly placeholder={posts.firstname}  className="edit-inp" />
-        
-    </div>
-    <div className="add-form">
-        <p> نام خانوادگی</p>
-        <input type="text" readOnly placeholder={posts.lastname}  className="edit-inp"  />
-        
-    </div>
+   
     <div className="add-form">
         <p>شماره همراه</p>
         <input type="text" readOnly placeholder={posts.mobileNumber}  className="edit-inp" />
         
     </div>
+  
     <div className="add-form">
-        <p>شماره ثابت</p>
-        <input type="text" readOnly placeholder={posts.telephoneNumber}  className="edit-inp"  />
+        <p>رمز عبور</p>
+        <div className="pw-inp">
+            <img src="/Images/bi_eye-slash.svg" alt="password" id="pwImg" onClick={visible}  />
+            <img src="/Images/Group.svg" alt="password" id="pwImg2"  onClick={visible}/>
+        <input type="password" readOnly    className="edit-inp" />
+        </div>
         
     </div>
-    <div className="add-form">
-        <p>استان</p>
-        <input type="text" readOnly placeholder={posts.address && posts.address.province}   className="edit-inp" />
-        
+
+    <div className="add-form" id="repeat-pw">
+        <p>تکرار رمز عبور </p>
+        <div className="pw-inp">
+        <img src="/Images/bi_eye-slash.svg" alt="password" id="pwImg3" onClick={visible} />
+            <img src="/Images/Group.svg" alt="password" id="pwImg4" onClick={visible}/>
+        <input type="password" readOnly   className="edit-inp" />
+        </div>
+        <p id="error">رمز عبور باید با تکرار آن برابر باشد.</p>
     </div>
-    <div className="add-form">
-        <p>شهر</p>
-        <input type="text" readOnly placeholder={posts.address && posts.address.city}   className="edit-inp" />
-        
-    </div>
-    <div className="add-form">
-        <p>منطقه</p>
-        <input type="text" readOnly  placeholder={posts.address && posts.address.zone}  className="edit-inp" />
-        
-    </div>
-    <div className="add-form">
-        <p>آدرس</p>
-        <input type="text" readOnly placeholder={posts.address && posts.address.address}  className="edit-inp"  />
-        
-    </div>
+
         </div>
         <div className="info-btn">
         <button onClick={editInfo} id="editbtn">ویرایش اطلاعات</button>

@@ -3,14 +3,24 @@ import Header from '../components/Header'
 import Navbar from '../components/Navbar'
 import Link from 'next/dist/client/link'
 import { useRouter } from "next/dist/client/router";
-import { useEffect } from 'react'
+import { useEffect,useState } from 'react';
 
 export default function Home() {
+    const[posts,setPosts] = useState([]);
     const Router = useRouter();
     useEffect(() => { 
         if (localStorage.getItem("token") == "" || localStorage.getItem("token") == undefined) {
             Router.push("/sign-in")
         }
+        var requestOptions = {
+            method: 'GET',
+            headers: {"content-type":"aplication/json",
+        "x-auth-token":`${localStorage.getItem('token')}`},
+            redirect: 'follow'
+          };
+        fetch("https://hunter-server.oben.design/api/admin/init", requestOptions)
+        .then(res => res.json())
+        .then(res => setPosts(res))
     }, [])
    
   return (
@@ -26,7 +36,37 @@ export default function Home() {
         
        <div className="pm">
        <div className="profile-main">
-       <div className="profile-menu">
+       <div className="res-dash">
+        <div className="dash-title">
+            <p>پیشخوان</p>
+        </div>
+            <div className="dashboard-main">
+           <Link href="/orders"><a>     <div className="dm" id="dm1">
+                    <img src="/Images/Mask Group.svg" alt="background" id="dm-bck"/>
+                    <img src="/Images/bag-tick.svg" alt="bag tick" />
+                   
+                    <p>تعداد  سفارش های جدید  </p>
+                    <p id="dmspec">{posts.newOrders}</p>
+                </div>
+                </a></Link>
+                <Link href="/products"><a>   <div className="dm" id="dm2">
+                <img src="/Images/Mask Group.svg" alt="background" id="dm-bck"/>
+                    <img src="/Images/Price Tag.svg" alt="Price tag" />
+                    <p>تعداد محصولات</p>
+                    <p id="dmspec">{posts.products}</p>
+                </div>
+                </a></Link>
+                <Link href="/orders"><a>   <div className="dm" id="dm3">
+                <img src="/Images/Mask Group.svg" alt="background" id="dm-bck"/>
+                    <img src="/Images/receipt-item.svg" alt="receipt-item" />
+                    <p> تعداد کل سفارش</p>
+                    <p id="dmspec">{posts.orders}</p>
+                </div>
+                </a></Link>
+            </div>
+           
+        </div>
+       <div className="profile-menu" id="res-menu">
                <Link href="/dashboard"><a> <div className="p-item" id="pspec">
                     {"<"}
                     <div className="pi">

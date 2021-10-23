@@ -1,20 +1,19 @@
 import Head from 'next/head'
-import Header from '../../components/Header';
-import Navbar from '../../components/Navbar';
+import Header from '../../../components/Header';
+import Navbar from '../../../components/Navbar';
 import { useEffect,useState } from 'react'
 import Link from 'next/dist/client/link';
+import { useRouter } from "next/dist/client/router";
 import Loader from "react-loader-spinner";
 
 
-const ADD = () => {
 
-    const[posts,setPosts] = useState([]);
-    const[brands,setBrands] = useState([]);
-    const[loading,setLoading] = useState(false);
+const Edit = () => {
 
+    let i = 0;
+  
     let images=[];
 
-let i =0;
     function x(e) {
         let fileInput = document.getElementsByClassName("aii")[0];
         let div = document.getElementsByClassName("add-img")[0];
@@ -36,34 +35,73 @@ let i =0;
     }
    
 
-    useEffect(() => { 
+    const Router = useRouter();
+    let id = Router.query.id;
+      const[posts,setPosts] = useState([]);
+      const[posts2,setPosts2] = useState([]);
+      const[brands,setBrands] = useState([]);
+      const[post,setPost] = useState([]);
+      const[loading,setLoading] = useState(false);
+      var stock = 1;
+  
+  
+        useEffect(()=>{
+          if(!Router.isReady) return;
+       
+          var requestOptions = {
+            method: 'GET',
+            headers: {"content-type":"aplication/json",
+        "x-auth-token":`${localStorage.getItem('token')}`},
+            redirect: 'follow'
+          };
+        fetch(`https://hunter-server.oben.design/api/admin/product`, requestOptions)
+        .then(res => res.json())
+        .then(res => {
          
-        
-            var requestOptions = {
-                        method: 'GET',
-                        headers: {
-                    "x-auth-token":`${localStorage.getItem('token')}`},
-                        redirect: 'follow'
-                      };
-                    fetch("https://hunter-server.oben.design/api/admin/product/category", requestOptions)
-                    .then(res => res.json())
-                    .then(res => setPosts(res.data.categories))
+            if (res.data) {
+                setPosts2(res.data.products);
+                setPost(res.data.products.filter(post => post._id == id));
+         
+              
+               
+          
+            }
+           
+        }
+        )
+        if (post[0]) {
+            stock=post[0].stock;
+        }
 
-                    var requestOptions2 = {
-                        method: 'GET',
-                        headers: {"content-type":"aplication/json",
-                    "x-auth-token":`${localStorage.getItem('token')}`},
-                        redirect: 'follow'
-                      };
-                    fetch("https://hunter-server.oben.design/api/admin/product/brand", requestOptions2)
-                    .then(res => res.json())
-                    .then(res => setBrands(res.data.brands))
-        
+        if (post[0]) {
+            images=post[0].images;
+        }
+  
     
-    }, [])
-    var stock = 1;
+        var requestOptions = {
+            method: 'GET',
+            headers: {
+        "x-auth-token":`${localStorage.getItem('token')}`},
+            redirect: 'follow'
+          };
+        fetch("https://hunter-server.oben.design/api/admin/product/category", requestOptions)
+        .then(res => res.json())
+        .then(res => setPosts(res.data.categories))
+
+        var requestOptions2 = {
+            method: 'GET',
+            headers: {"content-type":"aplication/json",
+        "x-auth-token":`${localStorage.getItem('token')}`},
+            redirect: 'follow'
+          };
+        fetch("https://hunter-server.oben.design/api/admin/product/brand", requestOptions2)
+        .then(res => res.json())
+        .then(res => setBrands(res.data.brands))
+       
+      }, [Router.isReady]);
+  
     let offprice;
-    function off(params) {
+    function off() {
          offprice = document.getElementById("pprice").value - document.getElementById("poff").value;
          document.getElementById("off").innerText = offprice;
     }
@@ -71,40 +109,45 @@ let i =0;
 
     async function submit() {
         setLoading(true);
-        let name = document.getElementById("pname").value;
-        let car = document.getElementById("pcar").value;
-        let price = document.getElementById("pprice").value;
-        let tag = document.getElementById("ptag").value;
-        let off = document.getElementById("poff").value;
-        let cat = document.getElementsByClassName("pcat")[0].value;
-        let brand = document.getElementsByClassName("pbrand")[0].value;
-        let img = document.getElementById("file");
+        let input = [];
+         input[0] = document.getElementById("pname");
+       input[1] = document.getElementById("pprice");
+        input[2]= document.getElementById("ptag");
+        input[3] = document.getElementById("poff");
+        input[4] = document.getElementsByClassName("pcat")[0];
+        input[5] = document.getElementsByClassName("pbrand")[0];
+        
     
+for (let i = 0; i < input.length; i++) {
+    if (input[i].value == "") {
+        input[i].value = input[i].placeholder;
+    }
+    
+}
 
         var formdata = new FormData();
 
-        formdata.append("title", name);
+        formdata.append("title", input[0].value);
 for (let i = 0; i < images.length; i++) {
     formdata.append("image",images[i]);
     
 }
 
-formdata.append("category", cat);
-formdata.append("brand", brand);
-formdata.append("tags", tag);
-formdata.append("price", price);
-formdata.append("offPrice", off);
+formdata.append("category", input[4].value);
+formdata.append("brand", input[5].value);
+formdata.append("tags", input[2].value);
+formdata.append("price", input[1].value);
+formdata.append("offPrice", input[3].value);
 formdata.append("stock", stock);
-formdata.append("carModel", car);
 
         var requestOptions = {
-            method: 'POST',
+            method: 'PUT',
             headers: {
            "x-auth-token":`${localStorage.getItem('token')}`},
             body:formdata,
             redirect: 'follow'
           };
-        let res = await fetch("https://hunter-server.oben.design/api/admin/product/add", requestOptions);
+        let res = await fetch(`https://hunter-server.oben.design/api/admin/product/${Router.query.id}`, requestOptions);
         if (res.status == 200) {
             setLoading(false);
             var modal = document.getElementById("myModal2");
@@ -122,7 +165,7 @@ formdata.append("carModel", car);
              }
         }
         let posts = await res.json();
-   
+      
     }
 
 
@@ -150,7 +193,7 @@ formdata.append("carModel", car);
 
 <div className="modal-content">
   <div className="modal-main">
-   <p>محصول  جدید ثبت شد </p>
+   <p>محصول   ویرایش شد </p>
 <div className="info-btn">
    <Link href="/products"><a ><button className="close">تایید</button></a></Link> 
 </div>
@@ -166,7 +209,7 @@ formdata.append("carModel", car);
                 <div className="profile-main">
                 <div className="dash-title" id="main-title">
                 <Link href="/products"><a > <p id="back">&larr; بازگشت به صفحه قبل</p> </a></Link>
-                    <p>افزودن محصول </p>
+                    <p>ویرایش محصول </p>
                 </div>
                 <div className="dash-title" id="fsize">
                     <p> نام و دسته بندی محصول </p>
@@ -175,11 +218,7 @@ formdata.append("carModel", car);
              
                 <div className="add-form">
         <p>نام محصول</p>
-        <input type="text" placeholder="مثال: لوله ورودی هوا" id="pname" />
-    </div>
-    <div className="add-form">
-        <p>نام خودرو</p>
-        <input type="text" placeholder="مثال:   پژو" id="pcar" />
+        <input type="text" placeholder={post[0] && post[0].title} id="pname" />
     </div>
     <div className="add-form" >
         <p>انتخاب دسته بندی</p>
@@ -207,11 +246,11 @@ formdata.append("carModel", car);
     </div>
     <div className="add-form">
         <p>برچسب محصول</p>
-        <input type="text" placeholder="مثال: لوله ورودی هوا" id="ptag" />
+        <input type="text" placeholder={post[0] && post[0].tags} id="ptag" />
     </div>
               </div>
     <div className="add-img">
-        <p id="fsize">انتخاب تصوير</p>
+        <p id="fsize">تغییر تصوير</p>
         <div className="aii" id="img-hid">
        <div className="ai" >
         <img src="/Images/image placeholder.svg" alt="upload image" />
@@ -239,7 +278,7 @@ formdata.append("carModel", car);
     <div className="add-form" id="stock">
        <div className="stock1">
        <p>قیمت</p>
-        <input type="text" placeholder="مثال: 124,000 تومان" id="pprice" />
+        <input type="text" placeholder={post[0] && post[0].price} id="pprice" />
        </div>
 <div className="stck">
 
@@ -259,7 +298,7 @@ formdata.append("carModel", car);
                 <div className="add-form">
         <p> اعمال تخفیف</p>
       <div className="add-inp">
-      <input type="text" placeholder="0" id="poff" onChange={off}/> 
+      <input type="text" placeholder={post[0] && post[0].offPrice} id="poff" onChange={off}/> 
       <p>تومان</p>
           </div> 
           <div className="after-off">
@@ -276,11 +315,11 @@ formdata.append("carModel", car);
         width={50}
         
       />
-      <p>در حال ثبت</p>
+      <p>در حال ویرایش</p>
     </div>
 }
     <div className="info-btn">
-        <button onClick={submit}>ثبت و انتشار محصول</button>
+        <button onClick={submit}> ویرایش  محصول</button>
         </div>
                 </div>
                 <Navbar />
@@ -289,4 +328,4 @@ formdata.append("carModel", car);
     </div> );
 }
  
-export default ADD;
+export default Edit;

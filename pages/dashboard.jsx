@@ -40,12 +40,12 @@ const Dashboard = () => {
             <p>پیشخوان</p>
         </div>
             <div className="dashboard-main">
-           <Link href="/products"><a>     <div className="dm" id="dm1">
+           <Link href="/orders"><a>     <div className="dm" id="dm1">
                     <img src="/Images/Mask Group.svg" alt="background" id="dm-bck"/>
                     <img src="/Images/bag-tick.svg" alt="bag tick" />
                    
-                    <p>تعداد محصول فروش رفته  </p>
-                    <p id="dmspec">{posts.soldProducts}</p>
+                    <p>تعداد  سفارش های جدید  </p>
+                    <p id="dmspec">{posts.newOrders}</p>
                 </div>
                 </a></Link>
                 <Link href="/products"><a>   <div className="dm" id="dm2">
@@ -58,7 +58,7 @@ const Dashboard = () => {
                 <Link href="/orders"><a>   <div className="dm" id="dm3">
                 <img src="/Images/Mask Group.svg" alt="background" id="dm-bck"/>
                     <img src="/Images/receipt-item.svg" alt="receipt-item" />
-                    <p>تعداد سفارش</p>
+                    <p> تعداد کل سفارش</p>
                     <p id="dmspec">{posts.orders}</p>
                 </div>
                 </a></Link>

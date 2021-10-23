@@ -3,6 +3,9 @@ import Header from '../../components/Header';
 import Navbar from '../../components/Navbar';
 import { useEffect,useState } from 'react'
 import { useRouter } from "next/dist/client/router";
+import Loader from "react-loader-spinner";
+import Link from 'next/dist/client/link';
+
 
 
 const User = () => {
@@ -10,7 +13,7 @@ const User = () => {
     const Router = useRouter();
 
     const[posts,setPosts] = useState([]);
-   
+    const[loading,setLoading] = useState(true);
 
     useEffect(() => { 
       
@@ -24,8 +27,10 @@ const User = () => {
                     fetch(`https://hunter-server.oben.design/api/admin/user/customer/${Router.query.id}`, requestOptions)
                     .then(res => res.json())
                     .then(res => {
+                      
                         if (res.data) {
                             setPosts(res.data.user);
+                            setLoading(false);
                         }
                     }
                     )
@@ -45,14 +50,27 @@ const User = () => {
     </div>
   <div className="pm">
   <div className="profile-main">
-    <div className="dash-title">
+    <div className="dash-title" id="main-title">
+    <Link href="/users"><a > <p id="back">&larr; بازگشت به صفحه قبل</p> </a></Link>
         <p>اطلاعات شخصی</p>
      
     </div>
+    { loading &&
+    <div className="loader">
+    <Loader
+        type="Rings"
+        color="#F58222"
+        height={100}
+        width={100}
+        
+      />
+    </div>
+}
+{!loading &&
     <div className="user-pi">
     <div className="personal-info">
             <div className="personal-text">
-                <p id="infspec">{posts.name} </p>
+                <p id="infspec">{posts.firstName + " " + posts.lastName} </p>
                 <p>نام و نام خانوادگی:</p>
                 <p id="infspec">{posts.storeName}</p>
                 <p>نام فروشگاه:</p>
@@ -70,6 +88,7 @@ const User = () => {
             </div>
         </div>
     </div>
+}
         {/* <div className="dash-title">
         <p>فاکتور ها</p>
     </div>
@@ -93,5 +112,7 @@ const User = () => {
   </div>
     </div> );
 }
+
+
  
 export default User;

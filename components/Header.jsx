@@ -4,6 +4,7 @@ import { useEffect } from 'react'
 import { useRouter } from "next/dist/client/router";
 
 
+
 const Header = () => {
 
   const Router = useRouter();
@@ -105,7 +106,6 @@ const Header = () => {
         <Link href="/categories" className="sactive">   دسته بندی ها  </Link>
         <Link href="/brands"  className="wactive"> برند های ما  </Link>
         <Link href="/offers" className="aactive">    طرح های شگفت انگیز و جوایز </Link>
-        <Link href="/contact" className="cactive"><a >  درباره و مکاتبه با ما    </a></Link>
         <a href="https://nilooz.com/" className="bactive">  بلاگ</a>
         <Link href="/sign-in">ورود به حساب کاربری</Link>
         <a  href="#" onClick={logOut}>خروج از حساب کاربری</a>
@@ -143,13 +143,13 @@ const Header = () => {
     
         <div className="mp-nav">
             
-           
+
            <ul>
            
-             <li><Link href="/contact" className="navItem" id="cactive" ><a > <div className="active-"></div> درباره و مکاتبه با ما   </a></Link></li> 
+
             <li><Link href="/offers" className="navItem" id="aactive" ><a > <div className="active-"></div> طرح های شگفت انگیز و جوایز </a></Link></li> 
              <li><Link href="/brands" className="navItem" id="wactive" ><a > <div className="active-"></div> برند های ما </a></Link></li> 
-              <li><Link href="/categories"  className="navItem" id="sactive" ><a > <div className="active-"></div>دسته بندي ها </a></Link></li> 
+              <li><Link href="/categories"  className="navItem" id="sactive" ><a > <div className="active-"></div>دسته بندی ها </a></Link></li> 
             <li><Link href="/" className="navItem" id="mactive"><a > <div className="active-"></div>صفحه اصلی </a></Link></li> 
            </ul>
        </div>
@@ -159,6 +159,7 @@ const Header = () => {
           </Link>
        </div>
     </div>
+   
     </div> );
 }
  

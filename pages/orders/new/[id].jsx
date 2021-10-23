@@ -1,6 +1,6 @@
 import Head from 'next/head'
-import Header from '../../components/Header';
-import Navbar from '../../components/Navbar';
+import Header from '../../../components/Header';
+import Navbar from '../../../components/Navbar';
 import { useRouter } from "next/dist/client/router";
 import { useEffect,useState } from 'react'
 import moment from 'moment-jalaali'
@@ -23,17 +23,17 @@ const Order = () => {
             if(!Router.isReady) return;
               var requestOptions = {
                           method: 'GET',
-                          headers: {"content-type":"aplication/json",
+                          headers: {"content-type":"application/json",
                       "x-auth-token":`${localStorage.getItem('token')}`},
                           redirect: 'follow'
                         };
                       fetch(`https://hunter-server.oben.design/api/admin/checkout`, requestOptions)
                       .then(res => res.json())
                       .then(res => {
-                      
+                       
                           if (res.data) {
-                              setPosts(res.data.other);
-                              setPost(res.data.other.filter(post => post._id == id));
+                              setPosts(res.data.processing);
+                              setPost(res.data.processing.filter(post => post._id == id));
                             
                           }
                       }
@@ -89,6 +89,7 @@ const Order = () => {
         }
     }
 
+
     function submitStatus() {
         setLoading(true);
         let error = document.getElementById("error");
@@ -118,7 +119,6 @@ const Order = () => {
             }else error.style.display = "block";
           
             })
-        
             .catch(err => {console.log('error', err);
             error.style.display="block";
       
@@ -170,7 +170,7 @@ const Order = () => {
                <div className="profile-main">
                 <div className="dash-title" id="main-title">
                 <Link href="/orders"><a > <p id="back">&larr; بازگشت به صفحه قبل</p> </a></Link>
-                    <p>جزئيات سفارش </p>
+                    <p>جزئيات سفارش جدید </p>
                 </div>
                 <div className="order-info">
                 <p id="situation"> {status && status}</p>
@@ -226,7 +226,7 @@ const Order = () => {
       <p>در حال ویرایش</p>
     </div>
 }
-                <p id="success">سفارش آپدیت شد</p>
+                    <p id="success">سفارش آپدیت شد</p>
                     <p id="error">مشکلی در ویرایش سفارش پیش آمد لطفا دوباره تلاش کنید</p>
                         <button onClick={openModal1} id="st-btn">وضعیت ارسال <img src="/Images/Vector 96.svg" alt="dropdown" /></button>
                     </div>
