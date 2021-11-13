@@ -66,11 +66,11 @@ const Orders = () => {
                 <div className="pitem" key={post._id}>
                 <div className="pitem-text">
                         <p>{post.address.receiverName}</p>
-                        <p>{post.products[0].title}</p>
+                        <p>{post.products[0] && post.products[0].title}</p>
                         <p>{post.orderNumber}</p>
                         <p>{post.deliveryType}</p>
                         <p>{post.amount.total}</p>
-                        <p>{post.products[0].price}</p>
+                        <p>{post.products[0] && post.products[0].price}</p>
                      <Link href={"/orders/new/"+post._id}><a><button>مشاهده جزئيات</button></a></Link>   
                     </div>
                     <div className="pitem-title">
