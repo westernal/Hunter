@@ -56,7 +56,7 @@ const ADD = () => {
             body:formdata,
             redirect: 'follow'
           };
-         fetch("https://hunter-server.oben.design/api/admin/promotion/add", requestOptions)
+         fetch("https://server.hunterpartapp.com/api/admin/promotion/add", requestOptions)
          .then(res => { res.json();
             if (res.status == 200) {
                 setLoading(true);

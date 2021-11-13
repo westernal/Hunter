@@ -27,7 +27,7 @@ const Order = () => {
                       "x-auth-token":`${localStorage.getItem('token')}`},
                           redirect: 'follow'
                         };
-                      fetch(`https://hunter-server.oben.design/api/admin/checkout`, requestOptions)
+                      fetch(`https://server.hunterpartapp.com/api/admin/checkout`, requestOptions)
                       .then(res => res.json())
                       .then(res => {
                        
@@ -109,7 +109,7 @@ const Order = () => {
             redirect: 'follow'
           };
           
-          fetch(`https://hunter-server.oben.design/api/admin/checkout/${Router.query.id}`, requestOptions)
+          fetch(`https://server.hunterpartapp.com/api/admin/checkout/${Router.query.id}`, requestOptions)
             .then(response =>{ response.json();
                
             if (response.status == 200) {
@@ -263,7 +263,7 @@ const Order = () => {
                         </div>
                         </div>
                         <div className="cart-pic">
-                            <img src={"https://hunter-server.oben.design/"+item.images[0].image} alt="Order picture" />
+                            <img src={"https://server.hunterpartapp.com/"+item.images[0].image} alt="Order picture" />
                         </div>
                     </div>
                        )

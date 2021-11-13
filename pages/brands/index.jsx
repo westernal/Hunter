@@ -22,7 +22,7 @@ const Brands = () => {
                     "x-auth-token":`${localStorage.getItem('token')}`},
                         redirect: 'follow'
                       };
-                    fetch("https://hunter-server.oben.design/api/admin/product/brand", requestOptions)
+                    fetch("https://server.hunterpartapp.com/api/admin/product/brand", requestOptions)
                     .then(res => res.json())
                     .then(res => {if (res.data) {
                       setPosts(res.data.brands)
@@ -69,7 +69,7 @@ const Brands = () => {
           return(
             <Link href={"/brands/" + post._id} key={post._id}><a >         <div className="brand2">
             <div className="brand"  style={{border: `1px solid ${post.color}`}}>
-            <img src={"https://hunter-server.oben.design/"+post.image} alt="category" />
+            <img src={"https://server.hunterpartapp.com/"+post.image} alt="category" />
         </div>
         <p>{post.title}</p>
         </div></a></Link>

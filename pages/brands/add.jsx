@@ -41,7 +41,7 @@ const[loading,setLoading] = useState(false);
             redirect: 'follow'
           };
           
-         fetch("https://hunter-server.oben.design/api/admin/product/brand/add", requestOptions)
+         fetch("https://server.hunterpartapp.com/api/admin/product/brand/add", requestOptions)
          .then(res => {res.json();
         if (res.status == 200) {
             setLoading(false);

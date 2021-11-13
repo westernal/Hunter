@@ -45,7 +45,7 @@ let i =0;
                     "x-auth-token":`${localStorage.getItem('token')}`},
                         redirect: 'follow'
                       };
-                    fetch("https://hunter-server.oben.design/api/admin/product/category", requestOptions)
+                    fetch("https://server.hunterpartapp.com/api/admin/product/category", requestOptions)
                     .then(res => res.json())
                     .then(res => setPosts(res.data.categories))
 
@@ -55,7 +55,7 @@ let i =0;
                     "x-auth-token":`${localStorage.getItem('token')}`},
                         redirect: 'follow'
                       };
-                    fetch("https://hunter-server.oben.design/api/admin/product/brand", requestOptions2)
+                    fetch("https://server.hunterpartapp.com/api/admin/product/brand", requestOptions2)
                     .then(res => res.json())
                     .then(res => setBrands(res.data.brands))
         
@@ -104,7 +104,7 @@ formdata.append("carModel", car);
             body:formdata,
             redirect: 'follow'
           };
-        let res = await fetch("https://hunter-server.oben.design/api/admin/product/add", requestOptions);
+        let res = await fetch("https://server.hunterpartapp.com/api/admin/product/add", requestOptions);
         if (res.status == 200) {
             setLoading(false);
             var modal = document.getElementById("myModal2");

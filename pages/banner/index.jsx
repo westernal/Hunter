@@ -21,7 +21,7 @@ const Index = () => {
                     "x-auth-token":`${localStorage.getItem('token')}`},
                         redirect: 'follow'
                       };
-                    fetch("https://hunter-server.oben.design/api/admin/banner", requestOptions)
+                    fetch("https://server.hunterpartapp.com/api/admin/banner", requestOptions)
                     .then(res => res.json())
                     .then(res => {if(res.data){setPosts(res.data.banners);
                     
@@ -69,7 +69,7 @@ const Index = () => {
           return(
             <Link href={"/banner/" + post._id} key={post._id}><a>
                     <div className={index<4 ? "banner"+index : "banner" + (index-3)} >
-            <img src={"https://hunter-server.oben.design/" + post.image} alt="banner"  id="bimg"/>
+            <img src={"https://server.hunterpartapp.com/" + post.image} alt="banner"  id="bimg"/>
         </div>
               </a></Link>
       

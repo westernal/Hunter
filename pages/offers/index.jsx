@@ -21,7 +21,7 @@ const Offers = () => {
                     "x-auth-token":`${localStorage.getItem('token')}`},
                         redirect: 'follow'
                       };
-                    fetch("https://hunter-server.oben.design/api/admin/promotion", requestOptions)
+                    fetch("https://server.hunterpartapp.com/api/admin/promotion", requestOptions)
                     .then(res => res.json())
                     .then(res => {if(res.data){
                  
@@ -79,7 +79,7 @@ const Offers = () => {
                 <h3>{post.title}</h3>
                 <p>{post.description} </p>
             </div>
-            <img src={"https://hunter-server.oben.design/" + post.image} alt="offer's picture" />
+            <img src={"https://server.hunterpartapp.com/" + post.image} alt="offer's picture" />
         </div>
                   </a></Link>
         
@@ -106,7 +106,7 @@ const Offers = () => {
                 <h3>{post.title}</h3>
                 <p>{post.description} </p>
             </div>
-            <img src={"https://hunter-server.oben.design/" + post.image} alt="offer's picture" />
+            <img src={"https://server.hunterpartapp.com/" + post.image} alt="offer's picture" />
         </div>
                   </a></Link>
         

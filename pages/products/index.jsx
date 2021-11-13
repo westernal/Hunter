@@ -22,7 +22,7 @@ const Products = () => {
                     "x-auth-token":`${localStorage.getItem('token')}`},
                         redirect: 'follow'
                       };
-                    fetch("https://hunter-server.oben.design/api/admin/product", requestOptions)
+                    fetch("https://server.hunterpartapp.com/api/admin/product", requestOptions)
                     .then(res => res.json())
                     .then(res => {
                         if (res.data) {
@@ -101,7 +101,7 @@ const Products = () => {
                 return(
                     <div className="pitem" key={post._id}>
         <div className="pitem-text">
-        <img src={post.images && "https://hunter-server.oben.design/"+post.images[0].image} alt="product" id="js"/>
+        <img src={post.images && "https://server.hunterpartapp.com/"+post.images[0].image} alt="product" id="js"/>
             <p>{post.title}</p>
             <p>{post.productNumber} </p>
             <p>{post.category[0] && post.category[0].title} </p>
@@ -143,7 +143,7 @@ const Products = () => {
           return(
             <div className="dr-row" id="hidden" key={post._id}>
             <p id="js">{index+1}</p>
-            <img src={post.images && "https://hunter-server.oben.design/"+post.images[0].image} alt="product" id="js"/>
+            <img src={post.images && "https://server.hunterpartapp.com/"+post.images[0].image} alt="product" id="js"/>
             <p>{post.title}</p>
             <p>{post.productNumber} </p>
             <p>{post.category[0] && post.category[0].title} </p>

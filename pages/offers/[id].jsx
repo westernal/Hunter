@@ -26,7 +26,7 @@ const Offer = () => {
                 "x-auth-token":`${localStorage.getItem('token')}`},
                     redirect: 'follow'
                   };
-                fetch(`https://hunter-server.oben.design/api/admin/promotion/${Router.query.id}`, requestOptions)
+                fetch(`https://server.hunterpartapp.com/api/admin/promotion/${Router.query.id}`, requestOptions)
                 .then(res => res.json())
                 .then(res => {
                  
@@ -51,7 +51,7 @@ const Offer = () => {
           redirect: 'follow'
         };
         
-        fetch(`https://hunter-server.oben.design/api/admin/promotion/${Router.query.id}`, requestOptions)
+        fetch(`https://server.hunterpartapp.com/api/admin/promotion/${Router.query.id}`, requestOptions)
           .then(response => response.text())
 
           .catch(error => console.log('error', error));
@@ -113,7 +113,7 @@ const Offer = () => {
               body:formdata,
               redirect: 'follow'
             };
-          let res = await fetch(`https://hunter-server.oben.design/api/admin/promotion/${Router.query.id}`, requestOptions);
+          let res = await fetch(`https://server.hunterpartapp.com/api/admin/promotion/${Router.query.id}`, requestOptions);
           let posts = await res.json();
           if (res.status == 200) {
             setLoading(false);
@@ -219,7 +219,7 @@ const Offer = () => {
             <div className="ai1"><input id="file" type="file"  onChange={x} /><p>تغییر تصوير</p></div>
             
         </div>
-        <img src={post && "https://hunter-server.oben.design/" + post.image} alt="image" className="edit-img" />
+        <img src={post && "https://server.hunterpartapp.com/" + post.image} alt="image" className="edit-img" />
      </div>
         
     </div>

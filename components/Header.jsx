@@ -32,7 +32,7 @@ const Header = () => {
             
           };
           
-          fetch("https://hunter-server.oben.design/api/admin/user", requestOptions)
+          fetch("https://server.hunterpartapp.com/api/admin/user", requestOptions)
             .then(response => response.json())
             .then(result => {
                 

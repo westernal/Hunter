@@ -24,7 +24,7 @@ const User = () => {
                     "x-auth-token":`${localStorage.getItem('token')}`},
                         redirect: 'follow'
                       };
-                    fetch(`https://hunter-server.oben.design/api/admin/user/customer/${Router.query.id}`, requestOptions)
+                    fetch(`https://server.hunterpartapp.com/api/admin/user/customer/${Router.query.id}`, requestOptions)
                     .then(res => res.json())
                     .then(res => {
                       
@@ -84,7 +84,7 @@ const User = () => {
                 <p>آدرس:</p>
             </div>
             <div className="personal-pic">
-                <img src={"https://hunter-server.oben.design/"+posts.image} alt="user profile picture" />
+                <img src={"https://server.hunterpartapp.com/"+posts.image} alt="user profile picture" />
             </div>
         </div>
     </div>

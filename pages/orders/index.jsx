@@ -20,7 +20,7 @@ const Orders = () => {
                 "x-auth-token":`${localStorage.getItem('token')}`},
                     redirect: 'follow'
                   };
-                fetch(`https://hunter-server.oben.design/api/admin/checkout`, requestOptions)
+                fetch(`https://server.hunterpartapp.com/api/admin/checkout`, requestOptions)
                 .then(res => res.json())
                 .then(res => {
                     

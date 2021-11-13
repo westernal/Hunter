@@ -18,7 +18,7 @@ const Information = () => {
                     "x-auth-token":`${localStorage.getItem('token')}`},
                         redirect: 'follow'
                       };
-                    fetch("https://hunter-server.oben.design/api/admin/user", requestOptions)
+                    fetch("https://server.hunterpartapp.com/api/admin/user", requestOptions)
                     .then(res => res.json())
                     .then(res => {if (res.data) {
                       
@@ -125,7 +125,7 @@ const Information = () => {
                 redirect: 'follow'
               };
              
-              fetch("https://hunter-server.oben.design/api/admin/user/update", requestOptions)
+              fetch("https://server.hunterpartapp.com/api/admin/user/update", requestOptions)
                 .then(response => response.json())
                 
                 .catch(error => console.log('error', error));

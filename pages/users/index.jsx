@@ -22,7 +22,7 @@ const Users = () => {
                     "x-auth-token":`${localStorage.getItem('token')}`},
                         redirect: 'follow'
                       };
-                    fetch("https://hunter-server.oben.design/api/admin/user/customer", requestOptions)
+                    fetch("https://server.hunterpartapp.com/api/admin/user/customer", requestOptions)
                     .then(res => res.json())
                     .then(res => {
                       

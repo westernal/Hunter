@@ -26,7 +26,7 @@ const Product = () => {
       "x-auth-token":`${localStorage.getItem('token')}`},
           redirect: 'follow'
         };
-      fetch(`https://hunter-server.oben.design/api/admin/product`, requestOptions)
+      fetch(`https://server.hunterpartapp.com/api/admin/product`, requestOptions)
       .then(res => res.json())
       .then(res => {
      
@@ -57,7 +57,7 @@ const Product = () => {
             redirect: 'follow'
           };
           
-          fetch(`https://hunter-server.oben.design/api/admin/product/${Router.query.id}`, requestOptions)
+          fetch(`https://server.hunterpartapp.com/api/admin/product/${Router.query.id}`, requestOptions)
             .then(response => response.text())
            
             .catch(error => console.log('error', error));
@@ -130,7 +130,7 @@ const Product = () => {
         <div className="slider">
 
     {
-      post[0] && post[0].images && post[0].images.map(item => <img src={"https://hunter-server.oben.design/" + item.image} key={item._id}/>)
+      post[0] && post[0].images && post[0].images.map(item => <img src={"https://server.hunterpartapp.com/" + item.image} key={item._id}/>)
     }
       </div>
       <div className="product-main">

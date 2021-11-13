@@ -18,7 +18,7 @@ const Dashboard = () => {
                     "x-auth-token":`${localStorage.getItem('token')}`},
                         redirect: 'follow'
                       };
-                    fetch("https://hunter-server.oben.design/api/admin/init", requestOptions)
+                    fetch("https://server.hunterpartapp.com/api/admin/init", requestOptions)
                     .then(res => res.json())
                     .then(res => setPosts(res))
 

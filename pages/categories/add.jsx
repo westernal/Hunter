@@ -46,7 +46,7 @@ formdata.append("color", color);
       body:formdata,
       redirect: 'follow'
     };
-  let res = await fetch("https://hunter-server.oben.design/api/admin/product/category/add", requestOptions);
+  let res = await fetch("https://server.hunterpartapp.com/api/admin/product/category/add", requestOptions);
   let posts = await res.json();
   if (res.status == 200) {
     setLoading(false);

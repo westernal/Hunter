@@ -30,7 +30,7 @@ const LogIn = () => {
 
         
         
-        fetch(`https://hunter-server.oben.design/api/admin/user/signInByMobileNumber`, requestOptions)
+        fetch(`https://server.hunterpartapp.com/api/admin/user/signInByMobileNumber`, requestOptions)
           .then(response => {response.json();
           if (response.ok) {
               
@@ -71,7 +71,7 @@ const LogIn = () => {
             agent: httpsAgent
           };
           
-          fetch("https://hunter-server.oben.design/api/admin/user/validatecode/", requestOptions)
+          fetch("https://server.hunterpartapp.com/api/admin/user/validatecode/", requestOptions)
             .then(response =>response.json() )
             .then(result => {
                 
