@@ -31,8 +31,8 @@ let img;
  
 
         var formdata = new FormData();
-        formdata.append("start", moment(date1, 'jYYYY/jM/jD HH:mm').format('YYYY-MM-DTHH:mm:ss')+".156Z");
-        formdata.append("end", moment(date2, 'jYYYY/jM/jD HH:mm').format('YYYY-MM-DTHH:mm:ss')+".156Z");
+        formdata.append("start", moment(date1, 'jYYYY/jM/jD HH:mm').format('YYYY-MM-DDTHH:mm:ss')+".156Z");
+        formdata.append("end", moment(date2, 'jYYYY/jM/jD HH:mm').format('YYYY-MM-DDTHH:mm:ss')+".156Z");
         formdata.append("image", img.files[0]);
         
         var requestOptions = {

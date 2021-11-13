@@ -43,8 +43,8 @@ const ADD = () => {
         var formdata = new FormData();
         formdata.append("title", name);
         formdata.append("description", text);
-        formdata.append("start", moment(date1, 'jYYYY/jM/jD HH:mm').format('YYYY-MM-DTHH:mm:ss'));
-        formdata.append("end", moment(date2, 'jYYYY/jM/jD HH:mm').format('YYYY-MM-DTHH:mm:ss'));
+        formdata.append("start", moment(date1, 'jYYYY/jM/jD HH:mm').format('YYYY-MM-DDTHH:mm:ss'));
+        formdata.append("end", moment(date2, 'jYYYY/jM/jD HH:mm').format('YYYY-MM-DDTHH:mm:ss'));
         formdata.append("image", img.files[0]);
         formdata.append("pdf", pdf.files[0]);
        
