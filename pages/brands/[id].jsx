@@ -50,7 +50,11 @@ function xdelete() {
       };
       
       fetch(`https://server.hunterpartapp.com/api/admin/product/brand/${Router.query.id}`, requestOptions)
-        .then(response => response.text())
+        .then(response => {response.text();
+        if (response.status == 200) {
+          Router.push("/brands");
+        }
+        })
         .catch(error => console.log('error', error));
 }
 
@@ -170,7 +174,7 @@ if (img.files[0]) {
 
 </p>
 <div className="modal-btn">
-   <Link href="/brands"><a ><button onClick={xdelete} id="delBtn">تایید</button></a></Link> 
+   <a ><button onClick={xdelete} id="delBtn">تایید</button></a>
    <a ><button className="close">انصراف</button></a>
 </div>
 

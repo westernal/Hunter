@@ -52,7 +52,11 @@ const Offer = () => {
         };
         
         fetch(`https://server.hunterpartapp.com/api/admin/promotion/${Router.query.id}`, requestOptions)
-          .then(response => response.text())
+          .then(response => {response.text();
+          if (response.status == 200) {
+            Router.push("/offers");
+          }
+          })
 
           .catch(error => console.log('error', error));
   }
@@ -177,7 +181,7 @@ const Offer = () => {
 
 </p>
 <div className="modal-btn">
-   <Link href="/offers"><a ><button onClick={xdelete} id="delBtn">تایید</button></a></Link> 
+   <a ><button onClick={xdelete} id="delBtn">تایید</button></a> 
    <a ><button className="close">انصراف</button></a>
 </div>
 

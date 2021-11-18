@@ -60,6 +60,7 @@ const ADD = () => {
          .then(res => { res.json();
             if (res.status == 200) {
                 setLoading(true);
+                
                 var modal = document.getElementById("myModal2");
                 var pm = document.getElementsByClassName("pm")[0]
                 pm.style.filter = "blur(10px)";

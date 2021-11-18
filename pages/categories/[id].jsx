@@ -51,7 +51,12 @@ function xdelete() {
       };
       
       fetch(`https://server.hunterpartapp.com/api/admin/product/category/${Router.query.id}`, requestOptions)
-        .then(response => response.text())
+        .then(response => {response.text();
+        if (response.status == 200) {
+          Router.push("/categories");
+        }
+        
+        })
 
         .catch(error => console.log('error', error));
 }
@@ -243,7 +248,7 @@ formdata.append("color", color);
 
 </p>
 <div className="modal-btn">
-   <Link href="/categories"><a ><button onClick={xdelete} id="delBtn">تایید</button></a></Link> 
+   <a ><button onClick={xdelete} id="delBtn">تایید</button></a>
    <a ><button className="close">انصراف</button></a>
 </div>
 
